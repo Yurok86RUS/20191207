@@ -11,7 +11,7 @@
     android:layout_marginBottom="16dp">
 
     <TextView
-        android:id="@+id/text"
+        android:id="@+id/textCount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -29,8 +29,10 @@
         android:layout_marginBottom="16dp"/>
     <ProgressBar
         android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"/>
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:max="100"
+        android:progress="0"/>
 
 </LinearLayout>
