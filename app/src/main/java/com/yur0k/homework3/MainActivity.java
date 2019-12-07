@@ -25,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
 
         textCount = findViewById(R.id.textCount);
         buttonGo = findViewById(R.id.buttonGo);
+        progressBar = findViewById(R.id.progressBar);
+
+        progressBar.setVisibility(View.INVISIBLE);
 
         buttonGo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,13 +46,14 @@ public class MainActivity extends AppCompatActivity {
             super.onPreExecute();
             textCount.setText("Начинаем");
             buttonGo.setVisibility(View.INVISIBLE);
+            progressBar.setVisibility(View.VISIBLE);
         }
 
         @Override
         protected void onProgressUpdate(Integer... values) {
             super.onProgressUpdate(values);
-            textCount.setText("Прошло " + values[0]);
-       //     progressBar.setProgress(values[0]);
+            textCount.setText("Прошло " + values[0] + " сек.");
+            progressBar.setProgress(values[0]);
         }
 
         @Override
@@ -57,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
             try {
                 int counter = 0;
-                for (int i = 0; i <15 ; i++) {
+                for (int i = 0; i <10 ; i++) {
                     getCount(counter);
                     publishProgress(counter++);
                 }
@@ -74,7 +78,8 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(aVoid);
             textCount.setText("Закончили");
             buttonGo.setVisibility(View.VISIBLE);
-         //   progressBar.setProgress(0);
+            progressBar.setProgress(0);
+            progressBar.setVisibility(View.INVISIBLE);
         }
 
         public void getCount(int count) throws InterruptedException {
